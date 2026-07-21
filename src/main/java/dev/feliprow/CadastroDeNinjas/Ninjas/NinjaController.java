@@ -1,4 +1,4 @@
-package dev.feliprow.CadastroDeNinjas;
+package dev.feliprow.CadastroDeNinjas.Ninjas;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping
 public class NinjaController {
 
-//    @PostMapping  Enviar informações
+//    @PostMapping Enviar informações
 //    @PutMapping Alterar informações
 //    @PatchMapping Alterar informações
 //    @DeleteMapping Deletar informações.

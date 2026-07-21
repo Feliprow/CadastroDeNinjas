@@ -1,5 +1,9 @@
-package dev.feliprow.CadastroDeNinjas;
+package dev.feliprow.CadastroDeNinjas.Ninjas;
+
+import dev.feliprow.CadastroDeNinjas.Missoes.MissaoModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 //JPA = java Persistence ApI
 
@@ -13,6 +17,12 @@ public class NinjaModel {
     private String nome;
     private String email;
     private int idade;
+
+    //@ManyToOne Muitas missoes para um unico ninja
+    @ManyToOne // Varios para Um
+    @JoinColumn(name = "missoes_id") // Foreing key / chave estrangeria
+    private MissaoModel missoes;
+    // join column é a coluna de junção
 
     public NinjaModel() {
     }

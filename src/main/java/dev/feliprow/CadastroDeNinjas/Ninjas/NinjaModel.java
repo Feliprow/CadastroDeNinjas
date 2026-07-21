@@ -2,6 +2,7 @@ package dev.feliprow.CadastroDeNinjas.Ninjas;
 
 import dev.feliprow.CadastroDeNinjas.Missoes.MissaoModel;
 import jakarta.persistence.*;
+import jdk.jfr.Name;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,16 +19,21 @@ public class NinjaModel {
 
     @Id // Identificador
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment
+    @Column(name = "pk_id_ninja")
     private long id;
+
+    @Column(name = "nome")
     private String nome;
 
-    @Column(unique = true) // Usa-se em cpf, rg, passaporte etc..
+    @Column(unique = true, name = "email") // Usa-se em cpf, rg, passaporte etc..
     private String email;
+
+    @Column(name = "idade")
     private int idade;
 
     //@ManyToOne Muitas missoes para um unico ninja
     @ManyToOne // Varios para Um
-    @JoinColumn(name = "missoes_id") // Foreing key / chave estrangeria
-    private MissaoModel missoes;
+    @JoinColumn(name = "fk_id_missao") // Foreing key / chave estrangeria
+    private MissaoModel missao;
     // join column é a coluna de junção
     }

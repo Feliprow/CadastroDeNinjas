@@ -20,6 +20,8 @@ public class NinjaModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment
     private long id;
     private String nome;
+
+    @Column(unique = true) // Usa-se em cpf, rg, passaporte etc..
     private String email;
     private int idade;
 

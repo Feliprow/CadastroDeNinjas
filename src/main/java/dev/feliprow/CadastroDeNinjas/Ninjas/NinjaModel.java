@@ -2,7 +2,6 @@ package dev.feliprow.CadastroDeNinjas.Ninjas;
 
 import dev.feliprow.CadastroDeNinjas.Missoes.MissaoModel;
 import jakarta.persistence.*;
-import jdk.jfr.Name;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +19,7 @@ public class NinjaModel {
     @Id // Identificador
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment
     @Column(name = "pk_id_ninja")
-    private long id;
+    private Long id;
 
     @Column(name = "nome")
     private String nome;

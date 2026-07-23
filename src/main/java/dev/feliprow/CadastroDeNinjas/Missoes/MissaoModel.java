@@ -17,12 +17,17 @@ public class MissaoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pk_id_missao")
     private Long id;
 
+    @Column(name = "nome")
     private String nome;
 
+    @Column(name = "rank")
+    @Enumerated(EnumType.STRING)
     private RankMissao rank;
 
-    @OneToMany(mappedBy = "missoes") // Uma missão pode ter vários ninjas ONE to MANY...
+    //List
+    @OneToMany(mappedBy = "missao") // Uma missão pode ter vários ninjas ONE to MANY...
     private List<NinjaModel> ninjas;
 }

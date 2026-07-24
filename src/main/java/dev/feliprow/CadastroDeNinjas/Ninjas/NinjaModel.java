@@ -19,7 +19,7 @@ public class NinjaModel {
     @Id // Identificador
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment
     @Column(name = "pk_id_ninja")
-    private Long id;
+    private long id;
 
     @Column(name = "nome")
     private String nome;

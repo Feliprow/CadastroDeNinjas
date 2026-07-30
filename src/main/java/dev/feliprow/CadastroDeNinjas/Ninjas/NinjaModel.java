@@ -33,6 +33,7 @@ public class NinjaModel {
     //@ManyToOne Muitas missoes para um unico ninja
     @ManyToOne // Varios para Um
     @JoinColumn(name = "fk_id_missao") // Foreing key / chave estrangeria
+
     private MissaoModel missao;
     // join column é a coluna de junção
     }

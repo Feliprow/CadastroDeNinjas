@@ -3,7 +3,7 @@ package dev.feliprow.CadastroDeNinjas.Missoes;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("missoes")
+@RequestMapping("/missoes")
 public class MissaoController{
 
 //    MANDAR REQUISIÇÃO PARA CRIAR MISSÃO

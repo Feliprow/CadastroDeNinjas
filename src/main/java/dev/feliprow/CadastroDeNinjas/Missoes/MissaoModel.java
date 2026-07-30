@@ -1,5 +1,6 @@
 package dev.feliprow.CadastroDeNinjas.Missoes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.feliprow.CadastroDeNinjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -29,5 +30,6 @@ public class MissaoModel {
 
     //List
     @OneToMany(mappedBy = "missao") // Uma missão pode ter vários ninjas ONE to MANY...
+    @JsonIgnore // Ignora a serialização para nao bugar o loop de serialização
     private List<NinjaModel> ninjas;
 }

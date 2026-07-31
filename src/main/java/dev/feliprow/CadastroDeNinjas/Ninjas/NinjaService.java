@@ -3,6 +3,7 @@ package dev.feliprow.CadastroDeNinjas.Ninjas;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NinjaService   {
@@ -19,7 +20,8 @@ public class NinjaService   {
         return ninjaRepository.findAll();
     }
 
-//    public List<NinjaModel> mostrarId(){
-//        return ninjaRepository.findById(ninjaModel.getId());
-//    }
+    public NinjaModel listarPorId(Long id){
+        Optional<NinjaModel> ninjaModel = ninjaRepository.findById(id);
+        return ninjaModel.orElse(null);
+    }
 }

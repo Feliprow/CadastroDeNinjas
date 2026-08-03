@@ -1,32 +1,43 @@
 package dev.feliprow.CadastroDeNinjas.Missoes;
 
+import dev.feliprow.CadastroDeNinjas.Ninjas.NinjaService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/missoes")
-public class MissaoController{
+public class MissaoController {
 
-//    MANDAR REQUISIÇÃO PARA CRIAR MISSÃO
+    private MissaoService missaoService;
+
+    //    MANDAR REQUISIÇÃO PARA CRIAR MISSÃO
     @PostMapping("/criar") //Quando o usuário que mandar informações
-    public String criarMissao(){
+    public String criarMissao() {
         return "Missão criada com sucesso";
     }
 
-//    MANDAR REQUISIÇÃO PARA ALTERAR
+    //    MANDAR REQUISIÇÃO PARA ALTERAR
     @PutMapping("/alterar") // alterações
-    public String alterarMissao(){
+    public String alterarMissao() {
         return "Missão alterada com sucesso";
     }
 
-//    MANDAR REQUISIÇÃO PARA DELETAR
+    //    MANDAR REQUISIÇÃO PARA DELETAR
     @DeleteMapping("/deletar")
-    public String deletarMissao(){
+    public String deletarMissao() {
         return "Missão deletada com sucesso";
     }
 
-//    GET - MANDAR UMA REQUISIÇÃO PARA MOSTAR MISSÕES
+    //    GET - MANDAR UMA REQUISIÇÃO PARA MOSTAR MISSÕES
     @GetMapping("/listar")
-    public String listarMissao(){
-        return "Missões listadas com sucesso";
+    public List<MissaoModel> listarMissoes() {
+        return missaoService.listarMissoes();
+    }
+
+    // Buscar por id
+    @GetMapping("/listar/{id}")
+    public MissaoModel listarPorId(@PathVariable Long id){
+        return missaoService.listarPorId(id);
     }
 }

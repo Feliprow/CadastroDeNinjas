@@ -18,4 +18,10 @@ public class MissaoService {
         return missaoRepository.findAll();
     }
 
+    // Busca por id
+    public MissaoModel listarPorId(Long id){
+        Optional<MissaoModel> missaoModel = missaoRepository.findById(id);
+        return missaoModel.orElse(null);
+    }
+
 }

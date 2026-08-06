@@ -1,6 +1,5 @@
 package dev.feliprow.CadastroDeNinjas.Missoes;
 
-import dev.feliprow.CadastroDeNinjas.Ninjas.NinjaService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,10 +10,14 @@ public class MissaoController {
 
     private MissaoService missaoService;
 
+    public MissaoController(MissaoService missaoService) {
+        this.missaoService = missaoService;
+    }
+
     //    MANDAR REQUISIÇÃO PARA CRIAR MISSÃO
     @PostMapping("/criar") //Quando o usuário que mandar informações
-    public String criarMissao() {
-        return "Missão criada com sucesso";
+    public MissaoModel criarMissao(@RequestBody MissaoModel missaoModel) {
+        return missaoService.criarMissao(missaoModel);
     }
 
     //    MANDAR REQUISIÇÃO PARA ALTERAR
@@ -24,9 +27,9 @@ public class MissaoController {
     }
 
     //    MANDAR REQUISIÇÃO PARA DELETAR
-    @DeleteMapping("/deletar")
-    public String deletarMissao() {
-        return "Missão deletada com sucesso";
+    @DeleteMapping("/deletar/{id}")
+    public void deletarMissao(@PathVariable Long id) {
+        missaoService.deletarMissao(id);
     }
 
     //    GET - MANDAR UMA REQUISIÇÃO PARA MOSTAR MISSÕES

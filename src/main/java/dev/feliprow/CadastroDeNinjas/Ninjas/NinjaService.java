@@ -6,22 +6,45 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class NinjaService   {
+public class NinjaService {
 
     private NinjaRepository ninjaRepository;
-    private NinjaModel ninjaModel;
 
     public NinjaService(NinjaRepository ninjaRepository) {
         this.ninjaRepository = ninjaRepository;
     }
 
     //Listar todos os ninjas
-    public List<NinjaModel> listarNinjas(){
+    public List<NinjaModel> listarNinjas() {
         return ninjaRepository.findAll();
     }
 
-    public NinjaModel listarPorId(Long id){
+    // Buscar por id
+    public NinjaModel listarPorId(Long id) {
         Optional<NinjaModel> ninjaModel = ninjaRepository.findById(id);
         return ninjaModel.orElse(null);
     }
+
+    //Criar novo ninja
+    public NinjaModel criarNinja(NinjaModel ninja) {
+        return ninjaRepository.save(ninja);
+    }
+
+    // Deletar ninja
+    public void deletar(Long id) {
+//        Optional<NinjaModel> ninjaModel = ninjaRepository.deleteById(id);
+        ninjaRepository.deleteById(id);
+    }
+
+    //    alterar ninja
+    public NinjaModel atualizarNinja(Long id, NinjaModel ninjaAtualizado) {
+
+        if (ninjaRepository.existsById(id)) {
+            ninjaAtualizado.setId(id);
+            return ninjaRepository.save(ninjaAtualizado);
+        }
+
+        return null;
+    }
+
 }

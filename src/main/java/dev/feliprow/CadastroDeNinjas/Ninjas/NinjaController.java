@@ -3,23 +3,18 @@ package dev.feliprow.CadastroDeNinjas.Ninjas;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/ninja")
 public class NinjaController {
 
+    private final NinjaRepository ninjaRepository;
     private NinjaService ninjaService;
 
-    public NinjaController(NinjaService ninjaService) {
+    public NinjaController(NinjaService ninjaService, NinjaRepository ninjaRepository) {
         this.ninjaService = ninjaService;
-    }
-
-    //    @PostMapping Enviar informações
-//    @PutMapping Alterar informações
-    //    @PatchMapping Alterarq informações.
-    @GetMapping("/boasvindas")// puxar informações
-    public String boasVindas() {
-        return "Essa é minha primeira menssagem nessa rota";
+        this.ninjaRepository = ninjaRepository;
     }
 
     //    ADICIONAR NINJA (create)
@@ -40,16 +35,17 @@ public class NinjaController {
         return ninjaService.listarPorId(id);
     }
 
-//    ALTERAR DADOS DOS NINJAS (UPDATE)
-    @PutMapping("/alterarID")
-    public String alterarNinja(){
-        return "ninja alterado";
+    //    DELETAR NINJA (DELETE)
+    @DeleteMapping("/deletar/{id}")
+    public void deletarPorId(@PathVariable Long id) {
+        ninjaService.deletar(id);
     }
 
-
-//    DELETAR NINJA (DELETE)
-    @DeleteMapping("/deletarID")
-    public String deletarNinjaPorId(){
-        return "Ninja deletado";
+    //    ALTERAR DADOS DOS NINJAS (UPDATE)
+//    put = post + get, basicamente uma junção de métodos com 2 requisitos
+    @PutMapping("/alterar/{id}")
+    public NinjaModel alterarNinja(@PathVariable Long id, @RequestBody NinjaModel ninjaAtualizado) {
+        return ninjaService.atualizarNinja(id, ninjaAtualizado);
     }
+
 }

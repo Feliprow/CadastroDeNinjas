@@ -20,12 +20,6 @@ public class MissaoController {
         return missaoService.criarMissao(missaoModel);
     }
 
-    //    MANDAR REQUISIÇÃO PARA ALTERAR
-    @PutMapping("/alterar") // alterações
-    public String alterarMissao() {
-        return "Missão alterada com sucesso";
-    }
-
     //    MANDAR REQUISIÇÃO PARA DELETAR
     @DeleteMapping("/deletar/{id}")
     public void deletarMissao(@PathVariable Long id) {
@@ -40,7 +34,12 @@ public class MissaoController {
 
     // Buscar por id
     @GetMapping("/listar/{id}")
-    public MissaoModel listarPorId(@PathVariable Long id){
+    public MissaoModel listarPorId(@PathVariable Long id) {
         return missaoService.listarPorId(id);
+    }
+
+    @PutMapping("alterar/{id}")
+    public MissaoModel alterarMissao(@PathVariable Long id, MissaoModel missaoAtualizada) {
+        return missaoService.alterarMissao(id, missaoAtualizada);
     }
 }
